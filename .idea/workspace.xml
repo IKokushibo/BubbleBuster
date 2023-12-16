@@ -6,18 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="6b146fc9-218e-4889-9ba1-f39b45bd09a6" name="Changes" comment="screen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/RedBalloonSprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/RedBalloonSprites.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/StayAttack1.png" beforeDir="false" afterPath="$PROJECT_DIR$/StayAttack1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/StayAttack2.png" beforeDir="false" afterPath="$PROJECT_DIR$/StayAttack2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/StayAttack3.png" beforeDir="false" afterPath="$PROJECT_DIR$/StayAttack3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/StayAttack4.png" beforeDir="false" afterPath="$PROJECT_DIR$/StayAttack4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Walk1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Walk1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Walk2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Walk2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Walk3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Walk3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Walk4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Walk4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bg_cropped.png" beforeDir="false" afterPath="$PROJECT_DIR$/bg_cropped.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bg_cropped_new.png" beforeDir="false" afterPath="$PROJECT_DIR$/bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/stone.png" beforeDir="false" afterPath="$PROJECT_DIR$/stone.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Walk1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Walk1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Walk2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Walk2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Walk3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Walk3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Walk4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Walk4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702737991385</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="screen">
+      <option name="closed" value="true" />
+      <created>1702738664209</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702738664209</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
