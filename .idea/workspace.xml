@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b146fc9-218e-4889-9ba1-f39b45bd09a6" name="Changes" comment="screen" />
+    <list default="true" id="6b146fc9-218e-4889-9ba1-f39b45bd09a6" name="Changes" comment="screen">
+      <change afterPath="$PROJECT_DIR$/NDTC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aaaa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/RedBalloonSprites.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/StayAttack1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/StayAttack2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/StayAttack3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/StayAttack4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Walk1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Walk2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Walk3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Walk4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/bg_cropped.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/bg_cropped_new.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/stone.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,13 +50,20 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Python.main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/Downloads/Compressed/python-balloon-game-master",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PythonFiles\Bubble Buster" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Bubble Buster" />
@@ -93,10 +117,19 @@
       <option name="project" value="LOCAL" />
       <updated>1702734483925</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="screen">
+      <option name="closed" value="true" />
+      <created>1702734682971</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702734682971</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="screen" />
     <option name="LAST_COMMIT_MESSAGE" value="screen" />
   </component>
