@@ -1,3 +1,5 @@
+import math
+
 import pygame
 import random
 
@@ -18,6 +20,9 @@ walk_images = [pygame.image.load(f'c{i}.png') for i in range(1, 11)]
 # Static player image facing left
 static_image_left = pygame.image.load('c1.png')  # Assuming the first image is the static pose
 
+# Player images for throwing animation
+
+
 # Initial player settings
 player_index = 0  # Index to track the current image in the walking animation
 playerImg = walk_images[player_index]
@@ -27,10 +32,25 @@ playerX_change = 0
 playerY_change = 0
 is_facing_left = False  # Flag to track the player's facing direction
 
+
+enemyImg = []
+enemyX = []
+enemyY = []
+enemyX_change = []
+enemyY_change = []
+num_of_enemies = 8
+
+for i in range(num_of_enemies):
+    enemyImg.append(pygame.image.load('b1.png'))
+enemyX.append(random.randint(0, 1180))
+enemyY.append(random.randint(50, 150))
+enemyX_change.append(2)
+enemyY_change.append(0.5)
+
 enemyImg = pygame.image.load('b1.png')
 enemyX = random.randint(0, 1180)
 enemyY = random.randint(50, 150)
-enemyX_change = 0
+enemyX_change = 2
 enemyY_change = 0.5
 
 bulletImg = pygame.image.load('s1.png')
@@ -48,15 +68,23 @@ def player(x, y):
 def enemy(x, y):
     screen.blit(enemyImg, (x, y))
 
+
 def fire_bullet(x, y):
     global bullet_state
     bullet_state = "fire"
     screen.blit(bulletImg, (x + 16, y + 10))
 
+def isCollision(enemyX, enemyY, bulletX, bulletY):
+    distance = math.sqrt((math.pow(enemyX - bulletX, 2)) + (math.pow(enemyY - bulletY, 2)))
+    if distance < 27:
+        return True
+    else:
+        return False
+
 
 # Animation settings
 frame_counter = 0
-animation_speed = 10  # Lower values make animation faster
+animation_speed = 6  # Lower values make animation faster
 
 # Game loop
 running = True
@@ -71,18 +99,17 @@ while running:
         # If keystroke is pressed, check whether it's right or left
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-                playerX_change = -2.5
+                playerX_change = -3.5
                 player_index = 1  # Change index for walking animation
                 is_facing_left = True  # Set the flag for facing left
             if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                playerX_change = 2.5
+                playerX_change = 3.5
                 player_index = 3  # Change index for walking animation
                 is_facing_left = False  # Reset the flag for facing left
             if event.key == pygame.K_SPACE:
-                if bullet_state is "ready":
+                if bullet_state == "ready":
                     bulletX = playerX
                     fire_bullet(bulletX, bulletY)
-
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_d or event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -104,18 +131,26 @@ while running:
     elif playerX >= 1180:
         playerX = 1180
 
-    enemyY += enemyY_change
 
+    enemyY += enemyY_change
     if enemyY >= 720:
         enemyY = random.randint(50, 150)
-
-    if bullet_state is "fire":
-        fire_bullet(bulletX, bulletY)
-        bulletY -= bulletY_change
 
     if bulletY <= 0:
         bulletY = 588
         bullet_state = "ready"
+
+    if bullet_state == "fire":
+        fire_bullet(bulletX, bulletY)
+        bulletY -= bulletY_change
+
+    collision = isCollision(enemyX, enemyY, bulletX, bulletY)
+    if collision:
+        bulletY = 588
+        bullet_state = "ready"
+        enemyX = random.randint(0, 1180)
+        enemyY = random.randint(50, 150)
+
 
 
 
