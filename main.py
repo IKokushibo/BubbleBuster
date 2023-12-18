@@ -5,7 +5,15 @@ import random
 
 pygame.init()
 
-screen = pygame.display.set_mode((1280, 720))
+screen = pygame.display.set_mode((1000, 600))
+# Initial score setup
+score = 0
+font = pygame.font.Font(None, 36)  # Font for rendering text
+
+# Function to display score on the screen
+def display_score():
+    score_text = font.render("Score: " + str(score), True, (255, 255, 255))  # Create the score text
+    screen.blit(score_text, (800, 20))  # Adjust position to upper right
 
 pygame.display.set_caption("Bubble Buster")
 icon = pygame.image.load('NDTC.png')
@@ -15,7 +23,7 @@ pygame.display.set_icon(icon)
 background = pygame.image.load('bg1.png')
 
 # Player images for walking animation
-walk_images = [pygame.image.load(f'c{i}.png') for i in range(1, 11)]
+walk_images = [pygame.image.load(f'c{i}.png') for i in range(1, 10)]
 
 # Static player image facing left
 static_image_left = pygame.image.load('c1.png')  # Assuming the first image is the static pose
@@ -26,28 +34,21 @@ static_image_left = pygame.image.load('c1.png')  # Assuming the first image is t
 # Initial player settings
 player_index = 0  # Index to track the current image in the walking animation
 playerImg = walk_images[player_index]
-playerX = 660
-playerY = 588
+playerX = 470
+playerY = 480
 playerX_change = 0
 playerY_change = 0
 is_facing_left = False  # Flag to track the player's facing direction
-
 
 enemyImg = []
 enemyX = []
 enemyY = []
 enemyX_change = []
 enemyY_change = []
-num_of_enemies = 8
+num_of_enemies = 50
 
 for i in range(num_of_enemies):
-    enemyImg.append(pygame.image.load('b1.png'))
-enemyX.append(random.randint(0, 1180))
-enemyY.append(random.randint(50, 150))
-enemyX_change.append(2)
-enemyY_change.append(0.5)
-
-enemyImg = pygame.image.load('b1.png')
+    enemyImg = pygame.image.load('b1.png')
 enemyX = random.randint(0, 1180)
 enemyY = random.randint(50, 150)
 enemyX_change = 2
@@ -74,6 +75,7 @@ def fire_bullet(x, y):
     bullet_state = "fire"
     screen.blit(bulletImg, (x + 16, y + 10))
 
+
 def isCollision(enemyX, enemyY, bulletX, bulletY):
     distance = math.sqrt((math.pow(enemyX - bulletX, 2)) + (math.pow(enemyY - bulletY, 2)))
     if distance < 27:
@@ -84,7 +86,7 @@ def isCollision(enemyX, enemyY, bulletX, bulletY):
 
 # Animation settings
 frame_counter = 0
-animation_speed = 6  # Lower values make animation faster
+animation_speed = 5  # Lower values make animation faster
 
 # Game loop
 running = True
@@ -128,12 +130,11 @@ while running:
 
     if playerX <= 0:
         playerX = 0
-    elif playerX >= 1180:
-        playerX = 1180
-
+    elif playerX >= 940:
+        playerX = 940
 
     enemyY += enemyY_change
-    if enemyY >= 720:
+    if enemyY >= 600:
         enemyY = random.randint(50, 150)
 
     if bulletY <= 0:
@@ -150,10 +151,9 @@ while running:
         bullet_state = "ready"
         enemyX = random.randint(0, 1180)
         enemyY = random.randint(50, 150)
+        score += 1
 
-
-
-
+    display_score()
     player(playerX, playerY)
     enemy(enemyX, enemyY)
     pygame.display.update()

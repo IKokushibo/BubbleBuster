@@ -4,33 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b146fc9-218e-4889-9ba1-f39b45bd09a6" name="Changes" comment="screen">
-      <change afterPath="$PROJECT_DIR$/b3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/t1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/t2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/t3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/t4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/t5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/t6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StayAttack1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/StayAttack2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/StayAttack3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/b1.,2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/c1.png" beforeDir="false" afterPath="$PROJECT_DIR$/c1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c10.png" beforeDir="false" afterPath="$PROJECT_DIR$/c10.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c2.png" beforeDir="false" afterPath="$PROJECT_DIR$/c2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c3.png" beforeDir="false" afterPath="$PROJECT_DIR$/c3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c4.png" beforeDir="false" afterPath="$PROJECT_DIR$/c4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c5.png" beforeDir="false" afterPath="$PROJECT_DIR$/c5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c6.png" beforeDir="false" afterPath="$PROJECT_DIR$/c6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c7.png" beforeDir="false" afterPath="$PROJECT_DIR$/c7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c8.png" beforeDir="false" afterPath="$PROJECT_DIR$/c8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c9.png" beforeDir="false" afterPath="$PROJECT_DIR$/c9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iloveimg-resized.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iloveimg-resized1.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="6b146fc9-218e-4889-9ba1-f39b45bd09a6" name="Changes" comment="screen" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,17 +31,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Downloads/Compressed/python-balloon-game-master",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;S:/Bubble Buster&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\PythonFiles\Bubble Buster" />
@@ -167,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702745665378</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="screen">
+      <option name="closed" value="true" />
+      <created>1702749199605</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702749199605</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
