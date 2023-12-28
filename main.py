@@ -12,8 +12,6 @@ WIDTH, HEIGHT = 1000, 600
 
 BUTTON_WIDTH, BUTTON_HEIGHT = 120, 75
 
-FPS = 120
-
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption(TITTLE, icontitle="")
 
@@ -29,9 +27,11 @@ bullet_image = pygame.image.load('character_assets/bullet.png')
 
 FONT = pygame.font.SysFont('Comic Sans MS', 30)
 
+FINAL_SCORE_FONT = pygame.font.SysFont('Comic Sans MS', 15)
+
 TEXT_SURFACE = FONT.render('Start', True, (255, 255, 255))
 
-BALLOONS_DIMENSION = (50, 50)
+BALLOONS_DIMENSION = (30, 30)
 CHARACTER_WIDTH, CHARACTER_HEIGHT = 60, 90
 
 CHARACTER_IMAGE1 = pygame.image.load('character_assets/c1.png')
@@ -74,19 +74,24 @@ def is_video_ended():
   else:
     return True
 
-def ctr_left_clicked(CHARACTER, key_pressed, IMAGE_POSITION, CHARACTER_VEL):
+  
+def ctr_left_clicked(CHARACTER, key_pressed, IMAGE_POSITION, CHARACTER_VEL, frame_counter):
   if key_pressed[pygame.K_LEFT] and (CHARACTER.x - CHARACTER_VEL) > 0:
       CHARACTER.x -= CHARACTER_VEL
-      IMAGE_POSITION = (IMAGE_POSITION - 1) % len(list_of_character_image)
+      frame_counter = (frame_counter + 1) % 10
+      if frame_counter == 0:
+          IMAGE_POSITION = (IMAGE_POSITION - 1) % len(list_of_character_image)
       WIN.blit(flip_image(list_of_character_image[IMAGE_POSITION]), (CHARACTER.x, CHARACTER.y))
-  return IMAGE_POSITION, CHARACTER_VEL
+  return IMAGE_POSITION, CHARACTER_VEL, frame_counter
 
-def ctr_right_clicked(CHARACTER, key_pressed, IMAGE_POSITION, CHARACTER_VEL):
+def ctr_right_clicked(CHARACTER, key_pressed, IMAGE_POSITION, CHARACTER_VEL, frame_counter):
   if key_pressed[pygame.K_RIGHT] and (CHARACTER.x + CHARACTER_VEL) < WIDTH - 70:
     CHARACTER.x += CHARACTER_VEL
-    IMAGE_POSITION = (IMAGE_POSITION + 1) % len(list_of_character_image)
+    frame_counter = (frame_counter + 1) % 10
+    if frame_counter == 0:
+        IMAGE_POSITION = (IMAGE_POSITION + 1) % len(list_of_character_image)
     WIN.blit(list_of_character_image[IMAGE_POSITION], (CHARACTER.x, CHARACTER.y))
-  return IMAGE_POSITION, CHARACTER_VEL
+  return IMAGE_POSITION, CHARACTER_VEL, frame_counter
 
 def start_balloons_fall(balloons_rect, list_of_balloons, BALLOONS_VEL):
   WIN.blit(list_of_balloons[0], (balloons_rect[0].x, balloons_rect[0].y))
@@ -128,6 +133,10 @@ def text_draw(text, font, text_color, x, y):
   img_text = font.render(text, True, text_color)
   WIN.blit(img_text, (x, y))
 
+def text_draw_for_final_score(text, font, text_color, x, y):
+  img_text = font.render(text, True, text_color)
+  WIN.blit(img_text, (x, y))
+
 def update_highest_score(score):
   highest_score = open('highest_score.txt', 'r')
   if score > int(highest_score.read()):
@@ -139,8 +148,20 @@ def get_highest_score():
   highest_score = open('highest_score.txt', 'r')
   return highest_score
 
+def game_over(character_score, retry_rect, quit_rect):
+  surface = pygame.Surface((300, 200))
+  surface.fill((255, 255, 255))
+  surface.set_alpha(200)
+  WIN.blit(surface, (WIDTH // 2 - 150, HEIGHT // 2 - 100))
+  pygame.draw.rect(WIN, (168, 117, 50), retry_rect, width=0)
+  pygame.draw.rect(WIN, (168, 117, 50), quit_rect, width=0)
+  text_draw("Your game is OVER", FONT, (0,0,0), WIDTH // 2 - 135, HEIGHT // 2 - 90)
+  text_draw("retry", FONT, (0,0,0), WIDTH // 2 - 108, HEIGHT // 2)
+  text_draw("quit", FONT, (0,0,0), WIDTH // 2 + 50, HEIGHT // 2)
+  
 
-def draw_window(CHARACTER, start_button_clicked, key_pressed, IMAGE_POSITION, last_direction, character_score, collision_occurred, run, balloons_rect, list_of_balloons, random_number_pos_x, bullet_status, bullet_rect, character_position, is_ready_to_fire, CHARACTER_VEL, BALLOONS_VEL, BULLET_VEL, next_stage_balloon_vel):
+
+def draw_window(CHARACTER, start_button_clicked, key_pressed, IMAGE_POSITION, last_direction, character_score, collision_occurred, run, balloons_rect, list_of_balloons, random_number_pos_x, bullet_status, bullet_rect, character_position, is_ready_to_fire, CHARACTER_VEL, BALLOONS_VEL, BULLET_VEL, next_stage_balloon_vel, frame_counter, is_game_over, retry_rect, quit_rect, is_retry_button_clicked):
   if is_video_ended() and not start_button_clicked:
     pygame.draw.ellipse(WIN, (0, 255, 0), START_BUTTON)
     START_BUTTON_IMAGE.blit(TEXT_SURFACE, (110 - 35, 60 - 25))
@@ -155,38 +176,57 @@ def draw_window(CHARACTER, start_button_clicked, key_pressed, IMAGE_POSITION, la
     else:
       WIN.blit(flip_image(list_of_character_image[IMAGE_POSITION]), (CHARACTER.x, CHARACTER.y))
     if key_pressed[pygame.K_RIGHT]:
-      IMAGE_POSITION, CHARACTER_VEL = ctr_right_clicked(CHARACTER, key_pressed, IMAGE_POSITION, CHARACTER_VEL)
+      IMAGE_POSITION, CHARACTER_VEL, frame_counter = ctr_right_clicked(CHARACTER, key_pressed, IMAGE_POSITION, CHARACTER_VEL, frame_counter)
       last_direction = "right"
     if key_pressed[pygame.K_LEFT]:
-      IMAGE_POSITION, CHARACTER_VEL = ctr_left_clicked(CHARACTER, key_pressed, IMAGE_POSITION, CHARACTER_VEL)
+      IMAGE_POSITION, CHARACTER_VEL, frame_counter = ctr_left_clicked(CHARACTER, key_pressed, IMAGE_POSITION, CHARACTER_VEL, frame_counter)
       last_direction = "left"
 
-  for bal in balloons_rect:
-    if bullet_rect.colliderect(bal):
-      bal.y = 0
-      bal.x = random.randint(0, WIDTH - 70)
-      bullet_rect.y = 600
-      is_ready_to_fire = True
-      bullet_status = True
-      character_score += 1
 
-      if character_score % next_stage_balloon_vel == 0:
-        BALLOONS_VEL += 1
+  if bullet_rect.colliderect(balloons_rect[0]):
+    balloons_rect[0].y = 0
+    balloons_rect[0].x = random.randint(0, WIDTH - 70)
+    bullet_rect.y = 600
+    is_ready_to_fire = True
+    bullet_status = True
+    character_score += 1
 
-    #this condition handles if the player is game over
-    if bal.y >= HEIGHT and not bal.colliderect(bullet_rect):
-      is_game_over = True
-      CHARACTER_VEL = 0
-      BALLOONS_VEL = 0
-      BULLET_VEL = 0
-      text_draw("Game Over", SCORE_FONT, (0, 255, 0), WIDTH // 2 - 15, HEIGHT // 2 - 15)
+    if character_score % next_stage_balloon_vel == 0:
+      BALLOONS_VEL += 1
+
+  #this condition handles if the player is game over
+  if balloons_rect[0].y >= HEIGHT - 50 and not balloons_rect[0].colliderect(bullet_rect):
+    is_game_over = True
+    CHARACTER_VEL = 0
+    BALLOONS_VEL = 0
+    BULLET_VEL = 0
+    # text_draw("Game Over", SCORE_FONT, (0, 0, 0), WIDTH // 2 - 15, HEIGHT // 2 - 15)
+    if not is_retry_button_clicked:
+      game_over(character_score, retry_rect, quit_rect)
+      text_draw_for_final_score("You got " + str(character_score) + " score", FINAL_SCORE_FONT, (0,0,0), WIDTH // 2 - 50, HEIGHT // 2 - 35)
+
+  if is_retry_button_clicked and is_game_over:
+    is_retry_button_clicked = False
+    is_game_over = False
+    print('retry is being clicked')
+    character_score = 0
+    CHARACTER_VEL = 6
+    BALLOONS_VEL = 1
+    BULLET_VEL = 15
+    balloons_rect[0].y = 0
+    balloons_rect[0].x = random.randint(0, WIDTH)
+
+
 
 
   update_highest_score(character_score)
   pygame.display.update()
-  return IMAGE_POSITION, last_direction, character_score, collision_occurred, run, random_number_pos_x, bullet_status, CHARACTER, bullet_rect, is_ready_to_fire, CHARACTER_VEL, BALLOONS_VEL, BULLET_VEL
+  return IMAGE_POSITION, last_direction, character_score, collision_occurred, run, random_number_pos_x, bullet_status, CHARACTER, bullet_rect, is_ready_to_fire, CHARACTER_VEL, BALLOONS_VEL, BULLET_VEL, frame_counter, is_game_over, is_retry_button_clicked
 
 def main():
+
+  FPS = 120
+
   #initialize the time clock to handle fps
   clock = pygame.time.Clock()
 
@@ -207,8 +247,11 @@ def main():
   character_score = 0
   CHARACTER = pygame.Rect(WIDTH // 2, HEIGHT - 116, CHARACTER_WIDTH, CHARACTER_HEIGHT)
 
-  bullet_rect = pygame.Rect(WIDTH // 2, HEIGHT, 50, 90)
+  bullet_rect = pygame.Rect(WIDTH // 2, HEIGHT + 100, 50, 90)
   bullet_status = True
+
+  retry_rect = pygame.Rect(WIDTH // 2 - 120, HEIGHT // 2, 100, 50)
+  quit_rect = pygame.Rect(WIDTH // 2 + 25, HEIGHT // 2, 100, 50)
 
   random_number_pos_x = random.randint(0, 2)
 
@@ -222,6 +265,11 @@ def main():
 
   IMAGE_POSITION = 0
   last_direction = "right"
+
+  frame_counter = 0
+
+  is_game_over = False
+  is_retry_button_clicked = False
 
   run = True
   while run:
@@ -238,15 +286,21 @@ def main():
                 bullet_status = False
                 character_position = CHARACTER.x
 
-      if event.type == pygame.MOUSEBUTTONDOWN:
-        #if the button is clicked
-        if START_BUTTON.collidepoint(event.pos):
-          start_button_clicked = True
+        if event.type == pygame.MOUSEBUTTONDOWN:
+          #if the button is clicked
+          if START_BUTTON.collidepoint(event.pos):
+            start_button_clicked = True
+          if retry_rect.collidepoint(event.pos):
+            is_game_over = False
+            is_retry_button_clicked = True
+          if quit_rect.collidepoint(event.pos) and is_game_over:
+            run = False
+            print('quit me boy')
               
     key_pressed = pygame.key.get_pressed()    
     WIN.blit(BACKGROUND, (0,0))
     is_video_ended()
-    IMAGE_POSITION, last_direction, character_score, collision_occurred, run, random_number_pos_x, bullet_status, CHARACTER, bullet_rect, is_ready_to_fire, CHARACTER_VEL, BALLOONS_VEL, BULLET_VEL = draw_window(CHARACTER, start_button_clicked, key_pressed, IMAGE_POSITION, last_direction, character_score, collision_occurred, run, balloons_rect, list_of_balloons, random_number_pos_x, bullet_status, bullet_rect, character_position, is_ready_to_fire, CHARACTER_VEL, BALLOONS_VEL, BULLET_VEL, next_stage_balloon_vel)
+    IMAGE_POSITION, last_direction, character_score, collision_occurred, run, random_number_pos_x, bullet_status, CHARACTER, bullet_rect, is_ready_to_fire, CHARACTER_VEL, BALLOONS_VEL, BULLET_VEL, frame_counter, is_game_over, is_retry_button_clicked = draw_window(CHARACTER, start_button_clicked, key_pressed, IMAGE_POSITION, last_direction, character_score, collision_occurred, run, balloons_rect, list_of_balloons, random_number_pos_x, bullet_status, bullet_rect, character_position, is_ready_to_fire, CHARACTER_VEL, BALLOONS_VEL, BULLET_VEL, next_stage_balloon_vel, frame_counter, is_game_over, retry_rect, quit_rect, is_retry_button_clicked)
 
     
 
